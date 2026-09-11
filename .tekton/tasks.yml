@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: cleanup
+spec:
+  steps:
+    - name: cleanup
+      image: alpine
+      script: |
+        #!/bin/sh
+        echo "Cleaning workspace"
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: test
+spec:
+  steps:
+    - name: jest-test
+      image: node:20
+      script: |
+        #!/bin/sh
+        npm install
+        npm test
