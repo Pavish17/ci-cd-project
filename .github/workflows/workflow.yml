@@ -2,7 +2,9 @@ name: CI Pipeline
 
 on:
   push:
+    branches: [main]
   pull_request:
+    branches: [main]
 
 jobs:
   test:
@@ -12,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -23,5 +25,5 @@ jobs:
       - name: Lint with ESLint
         run: npx eslint .
 
-      - name: Run Jest tests
+      - name: Run unit tests with Jest
         run: npm test
